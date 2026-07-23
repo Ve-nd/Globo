@@ -1,140 +1,19 @@
-import React, { useState } from 'react';
-import { TrendingUp, ShoppingBag, Clock, Utensils, Star, Bell } from 'lucide-react';
-import { Card } from '../../components/ui/Card';
-import { Badge } from '../../components/ui/Badge';
-import { ConfirmDialog } from '../../components/ui/ConfirmDialog';
-
-const MerchantDashboard = () => {
-  const [isOpen, setIsOpen] = useState(true);
-  const [showStatusDialog, setShowStatusDialog] = useState(false);
-
-  const stats = [
-    { label: "Today's Orders", value: '47', icon: ShoppingBag, color: 'blue' },
-    { label: 'Revenue', value: '2,340 MAD', icon: TrendingUp, color: 'green' },
-    { label: 'Pending', value: '12', icon: Bell, color: 'orange' },
-    { label: 'Avg Prep Time', value: '18 min', icon: Clock, color: 'purple' },
-  ];
-
-  const popularItems = [
-    { name: 'Margherita Pizza', sales: 124, revenue: '8,060 MAD' },
-    { name: 'Pepperoni Pizza', sales: 98, revenue: '7,350 MAD' },
-    { name: 'Quattro Formaggi', sales: 85, revenue: '7,225 MAD' },
-    { name: 'Caesar Salad', sales: 64, revenue: '2,880 MAD' },
-  ];
-
-  return (
-    <div className="space-y-6 max-w-6xl mx-auto">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Store Overview</h1>
-          <p className="text-gray-500 text-sm mt-1">Here's what's happening at Pizza House today.</p>
-        </div>
-        
-        <div className="flex items-center gap-3 bg-white p-2 pr-4 rounded-full shadow-sm border border-gray-100">
-          <button 
-            onClick={() => setShowStatusDialog(true)}
-            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-              isOpen ? 'bg-green-500' : 'bg-gray-300'
-            }`}
-          >
-            <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-              isOpen ? 'translate-x-6' : 'translate-x-1'
-            }`} />
-          </button>
-          <span className={`text-sm font-bold ${isOpen ? 'text-green-600' : 'text-gray-500'}`}>
-            {isOpen ? 'Accepting Orders' : 'Store Closed'}
-          </span>
-        </div>
-      </div>
-
-      {/* KPI Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {stats.map((stat, i) => {
-          const Icon = stat.icon;
-          const colors = {
-            blue: 'bg-blue-50 text-blue-600',
-            green: 'bg-green-50 text-green-600',
-            orange: 'bg-orange-50 text-orange-600',
-            purple: 'bg-purple-50 text-purple-600',
-          }[stat.color];
-
-          return (
-            <Card key={i} className="p-5">
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${colors}`}>
-                <Icon size={20} />
-              </div>
-              <p className="text-gray-500 text-xs uppercase tracking-wider font-bold mb-1">{stat.label}</p>
-              <h3 className="text-2xl font-extrabold text-gray-900">{stat.value}</h3>
-            </Card>
-          );
-        })}
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Chart Area */}
-        <Card className="p-6 lg:col-span-2">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="font-bold text-gray-900">Revenue (Last 7 Days)</h3>
-            <select className="bg-gray-50 border-none text-sm font-medium rounded-lg p-2 focus:ring-0">
-              <option>This Week</option>
-              <option>Last Week</option>
-            </select>
-          </div>
-          <div className="h-64 flex items-end justify-between gap-2">
-            {/* Simple CSS Bar Chart */}
-            {[40, 70, 45, 90, 65, 80, 100].map((h, i) => (
-              <div key={i} className="flex-1 flex flex-col items-center gap-2 group">
-                <div className="w-full bg-orange-50 rounded-t-lg relative group-hover:bg-orange-100 transition-colors" style={{ height: `${h}%` }}>
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-gray-900 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                    {h * 40} MAD
-                  </div>
-                </div>
-                <span className="text-xs text-gray-500">
-                  {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][i]}
-                </span>
-              </div>
-            ))}
-          </div>
-        </Card>
-
-        {/* Popular Items */}
-        <Card className="p-6">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="font-bold text-gray-900">Popular Items</h3>
-            <Utensils size={20} className="text-gray-400" />
-          </div>
-          <div className="space-y-4">
-            {popularItems.map((item, i) => (
-              <div key={i} className="flex items-center gap-4">
-                <div className="w-8 h-8 rounded-lg bg-gray-50 font-bold text-gray-400 flex items-center justify-center flex-shrink-0">
-                  #{i + 1}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h4 className="font-bold text-gray-900 text-sm truncate">{item.name}</h4>
-                  <p className="text-xs text-gray-500">{item.sales} orders</p>
-                </div>
-                <div className="text-right">
-                  <span className="text-sm font-bold text-primary">{item.revenue}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Card>
-      </div>
-
-      <ConfirmDialog 
-        isOpen={showStatusDialog}
-        onClose={() => setShowStatusDialog(false)}
-        title={isOpen ? "Close Store?" : "Open Store?"}
-        message={isOpen 
-          ? "You will stop receiving new orders. Current active orders must still be fulfilled." 
-          : "You will start receiving new orders immediately."}
-        confirmText={isOpen ? "Yes, Close Store" : "Yes, Open Store"}
-        isDanger={isOpen}
-        onConfirm={() => setIsOpen(!isOpen)}
-      />
-    </div>
-  );
-};
-
-export default MerchantDashboard;
+  1: import React, { useState } from 'react';
+  2: import { TrendingUp, ShoppingBag, Clock, Utensils, Star, Bell } from 'lucide-react';
+  3: import { Card } from '../../components/ui/Card';
+  4: import { Badge } from '../../components/ui/Badge';
+  5: import { ConfirmDialog } from '../../components/ui/ConfirmDialog';
+  6: 
+  7: const MerchantDashboard = () => {
+  8:   const [isOpen, setIsOpen] = useState(true);
+  9:   const [showStatusDialog, setShowStatusDialog] = useState(false);
+ 10: 
+ 11:   const stats = [\n 12:     { label: \"إجمالي الطلبات اليوم\", value: '47', icon: ShoppingBag, color: 'blue' },\n 13:     { label: 'الإيرادات', value: '2,340 MAD', icon: TrendingUp, color: 'green' },\n 14:     { label: 'قيد الانتظار', value: '12', icon: Bell, color: 'orange' },\n 15:     { label: 'متوسط وقت التحضير', value: '18 دقيقة', icon: Clock, color: 'purple' },\n 16:   ];\n 17: 
+ 18:   const popularItems = [\n 19:     { name: 'بيتزا مارغريتا', sales: 124, revenue: '8,060 MAD' },\n 20:     { name: 'بيتزا بيبروني', sales: 98, revenue: '7,350 MAD' },\n 21:     { name: 'كواترو فورماجي', sales: 85, revenue: '7,225 MAD' },\n 22:     { name: 'سلطة سيزر', sales: 64, revenue: '2,880 MAD' },\n 23:   ];\n 24: 
+ 25:   return (\n 26:     <div className=\"space-y-6 max-w-6xl mx-auto\">\n 27:       <div className=\"flex flex-col md:flex-row md:items-center justify-between gap-4\">\n 28:         <div>\n 29:           <h1 className=\"text-2xl font-bold text-gray-900\">نظرة عامة على المتجر</h1>\n 30:           <p className=\"text-gray-500 text-sm mt-1\">إليك ما يحدث في مطعم البيتزا اليوم.</p>\n 31:         </div>\n 32:         \n 33:         <div className=\"flex items-center gap-3 bg-white p-2 pr-4 rounded-full shadow-sm border border-gray-100\">\n 34:           <button \n 35:             onClick={() => setShowStatusDialog(true)}\n 36:             className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${\n 37:               isOpen ? 'bg-green-500' : 'bg-gray-300'\n 38:             }`}\n 39:           >\n 40:             <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${\n 41:               isOpen ? 'translate-x-6' : 'translate-x-1'\n 42:             }`} />\n 43:           </button>\n 44:           <span className={`text-sm font-bold ${isOpen ? 'text-green-600' : 'text-gray-500'}`}>\n 45:             {isOpen ? 'استقبال الطلبات' : 'المتجر مغلق'}\n 46:           </span>\n 47:         </div>\n 48:       </div>\n 49: 
+ 50:       {/* KPI Cards */}\n 51:       <div className=\"grid grid-cols-2 md:grid-cols-4 gap-4\">\n 52:         {stats.map((stat, i) => {\n 53:           const Icon = stat.icon;\n 54:           const colors = {\n 55:             blue: 'bg-blue-50 text-blue-600',\n 56:             green: 'bg-green-50 text-green-600',\n 57:             orange: 'bg-orange-50 text-orange-600',\n 58:             purple: 'bg-purple-50 text-purple-600',\n 59:           }[stat.color];\n 60: 
+ 61:           return (\n 62:             <Card key={i} className=\"p-5\">\n 63:               <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${colors}`}>\n 64:                 <Icon size={20} />\n 65:               </div>\n 66:               <p className=\"text-gray-500 text-xs uppercase tracking-wider font-bold mb-1\">{stat.label}</p>\n 67:               <h3 className=\"text-2xl font-extrabold text-gray-900\">{stat.value}</h3>\n 68:             </Card>\n 69:           );\n 70:         })}\n 71:       </div>\n 72: 
+ 73:       <div className=\"grid grid-cols-1 lg:grid-cols-3 gap-6\">\n 74:         {/* Chart Area */}\n 75:         <Card className=\"p-6 lg:col-span-2\">\n 76:           <div className=\"flex items-center justify-between mb-6\">\n 77:             <h3 className=\"font-bold text-gray-900\">الإيرادات (آخر 7 أيام)</h3>\n 78:             <select className=\"bg-gray-50 border-none text-sm font-medium rounded-lg p-2 focus:ring-0\">\n 79:               <option>هذا الأسبوع</option>\n 80:               <option>الأسبوع الماضي</option>\n 81:             </select>\n 82:           </div>\n 83:           <div className=\"h-64 flex items-end justify-between gap-2\">\n 84:             {/* Simple CSS Bar Chart */}\n 85:             {[40, 70, 45, 90, 65, 80, 100].map((h, i) => (\n 86:               <div key={i} className=\"flex-1 flex flex-col items-center gap-2 group\">\n 87:                 <div className=\"w-full bg-orange-50 rounded-t-lg relative group-hover:bg-orange-100 transition-colors\" style={{ height: `${h}%` }}>\n 88:                   <div className=\"absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-gray-900 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap\">\n 89:                     {h * 40} MAD\n 90:                   </div>\n 91:                 </div>\n 92:                 <span className=\"text-xs text-gray-500\">\n 93:                   {['الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت', 'الأحد'][i]}\n 94:                 </span>\n 95:               </div>\n 96:             ))}\n 97:           </div>\n 98:         </Card>\n 99: 
+100:         {/* Popular Items */}\n101:         <Card className=\"p-6\">\n102:           <div className=\"flex items-center justify-between mb-6\">\n103:             <h3 className=\"font-bold text-gray-900\">الأصناف الأكثر طلباً</h3>\n104:             <Utensils size={20} className=\"text-gray-400\" />\n105:           </div>\n106:           <div className=\"space-y-4\">\n107:             {popularItems.map((item, i) => (\n108:               <div key={i} className=\"flex items-center gap-4\">\n109:                 <div className=\"w-8 h-8 rounded-lg bg-gray-50 font-bold text-gray-400 flex items-center justify-center flex-shrink-0\">\n110:                   #{i + 1}\n111:                 </div>\n112:                 <div className=\"flex-1 min-w-0\">\n113:                   <h4 className=\"font-bold text-gray-900 text-sm truncate\">{item.name}</h4>\n114:                   <p className=\"text-xs text-gray-500\">{item.sales} طلبات</p>\n115:                 </div>\n116:                 <div className=\"text-right\">\n117:                   <span className=\"text-sm font-bold text-primary\">{item.revenue}</span>\n118:                 </div>\n119:               </div>\n120:             ))}\n121:           </div>\n122:         </Card>\n123:       </div>\n124: 
+125:       <ConfirmDialog \n126:         isOpen={showStatusDialog}\n127:         onClose={() => setShowStatusDialog(false)}\n128:         title={isOpen ? \"إغلاق المتجر؟\" : \"فتح المتجر؟\"}\n129:         message={isOpen \n130:           ? \"سوف تتوقف عن استقبال طلبات جديدة. الطلبات الحالية النشطة يجب إتمامها.\" \n131:           : \"سوف تبدأ في استقبال طلبات جديدة فوراً.\"}\n132:         confirmText={isOpen ? \"نعم، إغلاق المتجر\" : \"نعم، فتح المتجر\"}\n133:         isDanger={isOpen}\n134:         onConfirm={() => setIsOpen(!isOpen)}\n135:       />\n136:     </div>\n137:   );\n138: };\n139: 
+140: export default MerchantDashboard;

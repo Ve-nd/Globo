@@ -24,10 +24,10 @@ const DriverNavigation = () => {
           </div>
           <div className="flex-1">
             <p className="text-xl font-extrabold leading-none mb-1">
-              {status === 'heading_to_store' ? '2.4 km' : status === 'at_store' ? 'Arrived' : '1.2 km'}
+              {status === 'heading_to_store' ? '2.4 كم' : status === 'at_store' ? 'تم الوصول' : '1.2 كم'}
             </p>
             <p className="text-gray-400 text-sm font-medium truncate">
-              {status === 'heading_to_store' ? 'Continue on Blvd Anfa' : status === 'at_store' ? 'Pick up order #8921' : 'Turn right on Rue des Oliviers'}
+              {status === 'heading_to_store' ? 'تابع السير في شارع أنفا' : status === 'at_store' ? 'استلام الطلب #8921' : 'انعطف يميناً في شارع الزيتون'}
             </p>
           </div>
         </div>
@@ -66,10 +66,10 @@ const DriverNavigation = () => {
         <div className="flex items-center justify-between mb-6">
           <div>
             <h2 className="text-xl font-extrabold text-gray-900">
-              {status === 'heading_to_store' ? 'Pizza House' : status === 'at_store' ? 'Pick up Order' : 'Amine L.'}
+              {status === 'heading_to_store' ? 'بيتزا هاوس' : status === 'at_store' ? 'استلام الطلب' : 'أمين ل.'}
             </h2>
             <p className="text-gray-500 text-sm">
-              {status === 'heading_to_store' ? 'Maarif, Casablanca' : status === 'at_store' ? 'Order #ORD-8921' : 'Apt 4B, Résidence les Palmiers'}
+              {status === 'heading_to_store' ? 'المعارف، الدار البيضاء' : status === 'at_store' ? 'الطلب #ORD-8921' : 'شقة 4ب، إقامة النخيل'}
             </p>
           </div>
           <div className="flex gap-2">
@@ -88,9 +88,9 @@ const DriverNavigation = () => {
           className="shadow-floating text-lg"
           onClick={advanceStatus}
         >
-          {status === 'heading_to_store' ? 'Mark as Arrived' : 
-           status === 'at_store' ? 'Confirm Pickup' : 
-           'Swipe to Deliver'}
+          {status === 'heading_to_store' ? 'تحديد كـ "تم الوصول"' : 
+           status === 'at_store' ? 'تأكيد الاستلام' : 
+           'اسحب للتوصيل'}
         </Button>
       </div>
     </div>

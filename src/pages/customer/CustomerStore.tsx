@@ -24,7 +24,7 @@ const CustomerStore = () => {
   const headerOpacity = useTransform(scrollY, [0, 150], [0, 1]);
   const titleY = useTransform(scrollY, [0, 150], [20, 0]);
 
-  if (!store) return <div className="p-8 text-center">Store not found</div>;
+  if (!store) return <div className="p-8 text-center">المتجر غير موجود</div>;
 
   const handleAddToCart = (item: any) => {
     cartStore.addItem({
@@ -35,7 +35,7 @@ const CustomerStore = () => {
       image: item.image,
       storeId: store.id
     });
-    toast.success(`Added ${item.name} to cart`);
+    toast.success(`تمت إضافة ${item.name} إلى السلة`);
   };
 
   return (
@@ -76,7 +76,7 @@ const CustomerStore = () => {
                 <Star size={16} className="text-yellow-400 fill-yellow-400" />
                 {store.rating}
               </div>
-              <span className="text-[10px] text-gray-500 uppercase tracking-wide">Rating</span>
+              <span className="text-[10px] text-gray-500 uppercase tracking-wide">التقييم</span>
             </div>
             <div className="w-px h-8 bg-gray-100"></div>
             <div className="flex flex-col items-center">
@@ -84,7 +84,7 @@ const CustomerStore = () => {
                 <Clock size={16} className="text-primary" />
                 {store.deliveryTime}
               </div>
-              <span className="text-[10px] text-gray-500 uppercase tracking-wide">Delivery</span>
+              <span className="text-[10px] text-gray-500 uppercase tracking-wide">التوصيل</span>
             </div>
             <div className="w-px h-8 bg-gray-100"></div>
             <div className="flex flex-col items-center">
@@ -92,7 +92,7 @@ const CustomerStore = () => {
                 <Info size={16} className="text-gray-400" />
                 {store.deliveryFee} MAD
               </div>
-              <span className="text-[10px] text-gray-500 uppercase tracking-wide">Fee</span>
+              <span className="text-[10px] text-gray-500 uppercase tracking-wide">الرسوم</span>
             </div>
           </div>
         </div>
@@ -195,7 +195,7 @@ const CustomerStore = () => {
               <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center font-bold">
                 {cartItemsCount}
               </div>
-              <span className="font-bold">View Cart</span>
+              <span className="font-bold">عرض السلة</span>
             </div>
             <span className="font-bold">{cartTotal} MAD</span>
           </button>

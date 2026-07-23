@@ -5,14 +5,14 @@ import { stores } from '../../data/mockData';
 import { Card } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 
-const recentSearches = ['Pizza', 'Burger', 'Sushi', 'Pharmacy'];
+const recentSearches = ['بيتزا', 'برجر', 'سوشي', 'صيدلية'];
 
 const CustomerSearch = () => {
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
-  const [activeFilter, setActiveFilter] = useState('All');
+  const [activeFilter, setActiveFilter] = useState('الكل');
 
-  const filters = ['All', 'Top Rated', 'Under 30 min', 'Free Delivery'];
+  const filters = ['الكل', 'الأعلى تقييماً', 'أقل من 30 دقيقة', 'توصيل مجاني'];
 
   const getFilteredStores = () => {
     let result = stores;
@@ -24,9 +24,9 @@ const CustomerSearch = () => {
       );
     }
     
-    if (activeFilter === 'Top Rated') result = result.filter(s => s.rating >= 4.7);
-    if (activeFilter === 'Under 30 min') result = result.filter(s => parseInt(s.deliveryTime) <= 30);
-    if (activeFilter === 'Free Delivery') result = result.filter(s => s.deliveryFee === 0);
+    if (activeFilter === 'الأعلى تقييماً') result = result.filter(s => s.rating >= 4.7);
+    if (activeFilter === 'أقل من 30 دقيقة') result = result.filter(s => parseInt(s.deliveryTime) <= 30);
+    if (activeFilter === 'توصيل مجاني') result = result.filter(s => s.deliveryFee === 0);
     
     return result;
   };
@@ -43,7 +43,7 @@ const CustomerSearch = () => {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search stores or items..."
+              placeholder="بحث عن متاجر أو عناصر..."
               className="w-full bg-transparent p-3 text-sm focus:outline-none"
               autoFocus
             />
@@ -73,9 +73,9 @@ const CustomerSearch = () => {
       </div>
 
       <div className="p-4 flex-1">
-        {!query && activeFilter === 'All' ? (
+        {!query && activeFilter === 'الكل' ? (
           <div className="mb-6">
-            <h3 className="font-bold text-gray-900 mb-3">Recent Searches</h3>
+            <h3 className="font-bold text-gray-900 mb-3">عمليات البحث الأخيرة</h3>
             <div className="flex flex-wrap gap-2">
               {recentSearches.map(item => (
                 <button
@@ -91,7 +91,7 @@ const CustomerSearch = () => {
         ) : (
           <div className="space-y-4">
             <h3 className="font-bold text-gray-900 mb-2">
-              {results.length} result{results.length !== 1 ? 's' : ''}
+              {results.length} نتيجة
             </h3>
             
             {results.length > 0 ? (
@@ -106,7 +106,7 @@ const CustomerSearch = () => {
                     <img src={store.image} alt={store.name} className="w-full h-full object-cover" />
                     {!store.isOpen && (
                       <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px] flex items-center justify-center">
-                        <span className="bg-red-100 text-red-700 text-[10px] font-bold px-2 py-0.5 rounded-sm uppercase">Closed</span>
+                        <span className="bg-red-100 text-red-700 text-[10px] font-bold px-2 py-0.5 rounded-sm uppercase">مغلق</span>
                       </div>
                     )}
                   </div>
@@ -124,7 +124,7 @@ const CustomerSearch = () => {
                         <Clock size={12} /> {store.deliveryTime}
                       </div>
                       <div className="flex items-center gap-1 text-primary">
-                        🛵 {store.deliveryFee === 0 ? 'Free' : `${store.deliveryFee} MAD`}
+                        🛵 {store.deliveryFee === 0 ? 'مجاني' : `${store.deliveryFee} درهم`}
                       </div>
                     </div>
                   </div>
@@ -135,8 +135,8 @@ const CustomerSearch = () => {
                 <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 text-gray-400">
                   <Search size={24} />
                 </div>
-                <h3 className="font-bold text-gray-900 mb-1">No results found</h3>
-                <p className="text-sm text-gray-500">Try searching for something else</p>
+                <h3 className="font-bold text-gray-900 mb-1">لا توجد نتائج</h3>
+                <p className="text-sm text-gray-500">حاول البحث عن شيء آخر</p>
               </div>
             )}
           </div>

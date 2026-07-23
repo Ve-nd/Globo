@@ -8,12 +8,12 @@ import { Badge } from '../../components/ui/Badge';
 import { StoreCardSkeleton } from '../../components/ui/Skeleton';
 
 const categories = [
-  { id: 'all', name: 'All', icon: '🍽️' },
-  { id: 'restaurants', name: 'Restaurants', icon: '🍔' },
-  { id: 'grocery', name: 'Grocery', icon: '🛒' },
-  { id: 'pharmacy', name: 'Pharmacy', icon: '💊' },
-  { id: 'bakery', name: 'Bakery', icon: '🥐' },
-  { id: 'convenience', name: 'Convenience', icon: '🏪' },
+  { id: 'all', name: 'الكل', icon: '🍽️' },
+  { id: 'restaurants', name: 'مطاعم', icon: '🍔' },
+  { id: 'grocery', name: 'بقالة', icon: '🛒' },
+  { id: 'pharmacy', name: 'صيدلية', icon: '💊' },
+  { id: 'bakery', name: 'مخبز', icon: '🥐' },
+  { id: 'convenience', name: 'متاجر سريعة', icon: '🏪' },
 ];
 
 const CustomerHome = () => {
@@ -43,10 +43,10 @@ const CustomerHome = () => {
               <span className="text-white font-bold text-sm">G</span>
             </div>
             <div>
-              <p className="text-xs text-gray-500 font-medium">Delivering to</p>
+              <p className="text-xs text-gray-500 font-medium">التوصيل إلى</p>
               <div className="flex items-center gap-1 text-primary font-bold">
                 <MapPin size={16} />
-                <span>Casablanca, Maarif</span>
+                <span>الدار البيضاء، المعارف</span>
               </div>
             </div>
           </div>
@@ -62,7 +62,7 @@ const CustomerHome = () => {
           className="bg-gray-100 rounded-xl p-3 flex items-center gap-3 text-gray-500 cursor-text"
         >
           <Search size={20} />
-          <span className="flex-1 font-medium text-sm">What are you craving?</span>
+          <span className="flex-1 font-medium text-sm">ما الذي تشتهيه اليوم؟</span>
         </div>
       </div>
 
@@ -97,9 +97,9 @@ const CustomerHome = () => {
         {activeCategory === 'all' && (
           <div>
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-lg font-bold text-gray-900">Featured Today</h2>
+              <h2 className="text-lg font-bold text-gray-900">مميز اليوم</h2>
               <button className="text-primary text-sm font-semibold flex items-center">
-                See all <ChevronRight size={16} />
+                عرض الكل <ChevronRight size={16} />
               </button>
             </div>
             
@@ -134,7 +134,7 @@ const CustomerHome = () => {
 
         {/* Store List */}
         <div>
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Nearby Stores</h2>
+          <h2 className="text-lg font-bold text-gray-900 mb-4">متاجر قريبة</h2>
           <div className="space-y-4">
             {isLoading ? (
               <>
@@ -154,7 +154,7 @@ const CustomerHome = () => {
                     <img src={store.image} alt={store.name} className="w-full h-full object-cover" />
                     <div className="absolute top-3 right-3 flex flex-col gap-2 items-end">
                       <Badge variant={store.isOpen ? 'green' : 'red'}>
-                        {store.isOpen ? 'Open' : 'Closed'}
+                        {store.isOpen ? 'مفتوح' : 'مغلق'}
                       </Badge>
                       <div className="bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg text-xs font-bold flex items-center gap-1">
                         <Star size={12} className="text-yellow-400 fill-yellow-400" />
@@ -175,7 +175,7 @@ const CustomerHome = () => {
                       </div>
                       <div className="flex items-center gap-1 bg-gray-50 px-2 py-1 rounded-md">
                         <span className="text-primary">🛵</span>
-                        {store.deliveryFee === 0 ? 'Free' : `${store.deliveryFee} MAD`}
+                        {store.deliveryFee === 0 ? 'مجاني' : `${store.deliveryFee} درهم`}
                       </div>
                     </div>
                   </div>
@@ -185,7 +185,7 @@ const CustomerHome = () => {
             
             {!isLoading && filteredStores.length === 0 && (
               <div className="text-center py-12 text-gray-500">
-                <p>No stores found in this category.</p>
+                <p>لا توجد متاجر في هذا القسم.</p>
               </div>
             )}
           </div>

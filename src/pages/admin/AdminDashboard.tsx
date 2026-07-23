@@ -4,17 +4,17 @@ import { Card } from '../../components/ui/Card';
 
 const AdminDashboard = () => {
   const stats = [
-    { label: 'Total Orders Today', value: '1,245', icon: ShoppingBag, color: 'blue' },
-    { label: 'Total Revenue', value: '142,500 MAD', icon: TrendingUp, color: 'green' },
-    { label: 'Active Drivers', value: '84', icon: Users, color: 'orange' },
-    { label: 'Active Stores', value: '112', icon: Store, color: 'purple' },
+    { label: 'إجمالي الطلبات اليوم', value: '1,245', icon: ShoppingBag, color: 'blue' },
+    { label: 'إجمالي الإيرادات', value: '142,500 MAD', icon: TrendingUp, color: 'green' },
+    { label: 'السائقون النشطون', value: '84', icon: Users, color: 'orange' },
+    { label: 'المتاجر النشطة', value: '112', icon: Store, color: 'purple' },
   ];
 
   return (
     <div className="max-w-7xl mx-auto space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Platform Overview</h1>
-        <p className="text-gray-500 text-sm mt-1">Real-time metrics for Globo platform across all cities.</p>
+        <h1 className="text-2xl font-bold text-gray-900">نظرة عامة على المنصة</h1>
+        <p className="text-gray-500 text-sm mt-1">مقاييس لحظية لمنصة Globo عبر جميع المدن.</p>
       </div>
 
       {/* KPI Cards */}
@@ -46,10 +46,10 @@ const AdminDashboard = () => {
         {/* Main Chart */}
         <Card className="p-6 lg:col-span-2">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="font-bold text-gray-900">Weekly Orders Volume</h3>
+            <h3 className="font-bold text-gray-900">حجم الطلبات الأسبوعي</h3>
             <select className="bg-gray-50 border-none text-sm font-medium rounded-lg p-2 focus:ring-0">
-              <option>This Week</option>
-              <option>Last Week</option>
+              <option>هذا الأسبوع</option>
+              <option>الأسبوع الماضي</option>
             </select>
           </div>
           
@@ -81,7 +81,7 @@ const AdminDashboard = () => {
               />
             </svg>
             <div className="absolute inset-0 flex justify-between items-end px-2 pb-2 opacity-50 pointer-events-none">
-              {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, i) => (
+              {['الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت', 'الأحد'].map((day, i) => (
                 <span key={day} className="text-xs text-gray-500 font-medium translate-y-6">{day}</span>
               ))}
             </div>
@@ -91,7 +91,7 @@ const AdminDashboard = () => {
 
         {/* Coverage Map Mini */}
         <Card className="p-6 flex flex-col">
-          <h3 className="font-bold text-gray-900 mb-6">Live Coverage Map</h3>
+          <h3 className="font-bold text-gray-900 mb-6">خريطة التغطية المباشرة</h3>
           <div className="flex-1 bg-[#E8F0F2] rounded-xl relative overflow-hidden flex items-center justify-center min-h-[250px]">
             <div className="absolute inset-0 opacity-50" style={{ backgroundImage: 'radial-gradient(#ccc 1px, transparent 1px)', backgroundSize: '15px 15px' }}></div>
             
@@ -104,9 +104,9 @@ const AdminDashboard = () => {
             
             <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur px-3 py-2 rounded-lg shadow-sm">
               <p className="text-xs font-bold text-gray-900 flex items-center gap-1">
-                <MapPin size={12} className="text-primary" /> Casablanca
+                <MapPin size={12} className="text-primary" /> الدار البيضاء
               </p>
-              <p className="text-[10px] text-gray-500">15 km radius active</p>
+              <p className="text-[10px] text-gray-500">نطاق تغطية 15 كم</p>
             </div>
           </div>
         </Card>
@@ -115,13 +115,13 @@ const AdminDashboard = () => {
       {/* Recent Alerts */}
       <Card className="p-6">
         <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-          <AlertCircle size={20} className="text-gray-400" /> System Alerts
+          <AlertCircle size={20} className="text-gray-400" /> تنبيهات النظام
         </h3>
         <div className="space-y-3">
           {[
-            { msg: 'High order volume in Maarif area. Driver shortage detected.', time: '10 min ago', type: 'warning' },
-            { msg: 'New store "Burger Factory" completed onboarding.', time: '1 hour ago', type: 'info' },
-            { msg: 'Payment gateway sync successful.', time: '2 hours ago', type: 'success' },
+            { msg: 'حجم طلبات مرتفع في منطقة المعاريف. تم رصد نقص في السائقين.', time: 'قبل 10 دقائق', type: 'warning' },
+            { msg: 'متجر جديد "Burger Factory" أكمل عملية التسجيل.', time: 'قبل ساعة', type: 'info' },
+            { msg: 'تمت مزامنة بوابة الدفع بنجاح.', time: 'قبل ساعتين', type: 'success' },
           ].map((alert, i) => (
             <div key={i} className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
               <div className={`w-2 h-2 rounded-full mt-1.5 ${

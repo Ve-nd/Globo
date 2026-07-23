@@ -24,10 +24,10 @@ const AdminDrivers = () => {
     <div className="max-w-7xl mx-auto space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Delivery Fleet</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage delivery partners and track their status.</p>
+          <h1 className="text-2xl font-bold text-gray-900">أسطول التوصيل</h1>
+          <p className="text-gray-500 text-sm mt-1">إدارة شركاء التوصيل وتتبع حالتهم.</p>
         </div>
-        <Button>+ Add New Driver</Button>
+        <Button>+ إضافة سائق جديد</Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -36,7 +36,7 @@ const AdminDrivers = () => {
             <Navigation size={24} />
           </div>
           <div>
-            <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">Online & Ready</p>
+            <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">متاح للعمل</p>
             <h3 className="text-2xl font-extrabold text-gray-900">42</h3>
           </div>
         </Card>
@@ -45,7 +45,7 @@ const AdminDrivers = () => {
             <Navigation size={24} className="transform rotate-45" />
           </div>
           <div>
-            <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">On Delivery</p>
+            <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">قيد التوصيل</p>
             <h3 className="text-2xl font-extrabold text-gray-900">28</h3>
           </div>
         </Card>
@@ -54,7 +54,7 @@ const AdminDrivers = () => {
             <Ban size={24} />
           </div>
           <div>
-            <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">Offline</p>
+            <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">غير متاح</p>
             <h3 className="text-2xl font-extrabold text-gray-900">14</h3>
           </div>
         </Card>
@@ -68,15 +68,15 @@ const AdminDrivers = () => {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search by name or ID..."
+              placeholder="بحث بالاسم أو المعرف..."
               className="w-full bg-transparent p-2 text-sm focus:outline-none"
             />
           </div>
           <select className="bg-gray-50 rounded-xl px-4 text-sm font-medium focus:outline-none border-none">
-            <option>All Statuses</option>
-            <option>Online</option>
-            <option>Busy</option>
-            <option>Offline</option>
+            <option>جميع الحالات</option>
+            <option>متاح</option>
+            <option>مشغول</option>
+            <option>غير متاح</option>
           </select>
         </div>
 
@@ -84,12 +84,12 @@ const AdminDrivers = () => {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-gray-50/50">
-                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Driver</th>
-                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Location</th>
-                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Deliveries Today</th>
-                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Earnings Today</th>
-                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-right">Actions</th>
+                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">سائق</th>
+                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">الحالة</th>
+                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">المدينة</th>
+                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">طلبات اليوم</th>
+                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">أرباح اليوم</th>
+                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-right">إجراءات</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
@@ -124,7 +124,7 @@ const AdminDrivers = () => {
                     {driver.ordersToday}
                   </td>
                   <td className="p-4 text-sm font-bold text-primary">
-                    {driver.earnings} MAD
+                    {driver.earnings} درهم
                   </td>
                   <td className="p-4 text-right">
                     <div className="flex items-center justify-end gap-2">

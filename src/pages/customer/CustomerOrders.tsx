@@ -5,9 +5,9 @@ import { Card } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 
 const orders = [
-  { id: 'ORD-8821', store: 'Pizza House', date: 'Today, 12:30 PM', items: '2x Margherita, 1x Coke', total: 145, status: 'Delivered' },
-  { id: 'ORD-8742', store: 'Burger Factory', date: 'Yesterday, 8:15 PM', items: '1x Classic Burger, 1x Fries', total: 75, status: 'Delivered' },
-  { id: 'ORD-8610', store: 'Pharmacie Centrale', date: 'Oct 12, 10:00 AM', items: 'Paracetamol, Vitamins', total: 120, status: 'Delivered' },
+  { id: 'ORD-8821', store: 'Pizza House', date: 'اليوم، 12:30 م', items: '2x مارجريتا، 1x كوكاكولا', total: 145, status: 'مكتمل' },
+  { id: 'ORD-8742', store: 'Burger Factory', date: 'أمس، 8:15 م', items: '1x برجر كلاسيك، 1x بطاطس', total: 75, status: 'مكتمل' },
+  { id: 'ORD-8610', store: 'Pharmacie Centrale', date: '12 أكتوبر، 10:00 ص', items: 'باراسيتامول، فيتامينات', total: 120, status: 'مكتمل' },
 ];
 
 const CustomerOrders = () => {
@@ -16,7 +16,7 @@ const CustomerOrders = () => {
   return (
     <div className="min-h-full bg-gray-50 flex flex-col">
       <div className="bg-white px-4 pt-safe-top pb-4 sticky top-0 z-20 shadow-sm border-b border-gray-100">
-        <h1 className="text-xl font-bold text-gray-900 mt-2">Past Orders</h1>
+        <h1 className="text-xl font-bold text-gray-900 mt-2">الطلبات السابقة</h1>
       </div>
 
       <div className="p-4 space-y-4">
@@ -42,7 +42,7 @@ const CustomerOrders = () => {
             <div className="flex items-center justify-between mt-auto">
               <span className="font-bold text-gray-900">{order.total} MAD</span>
               <button className="text-primary text-sm font-bold flex items-center">
-                Reorder <ChevronRight size={16} />
+                إعادة الطلب <ChevronRight size={16} />
               </button>
             </div>
           </Card>

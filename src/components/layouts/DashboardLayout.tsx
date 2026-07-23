@@ -12,18 +12,18 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ role }) => {
   const location = useLocation();
 
   const merchantLinks = [
-    { path: '/merchant/dashboard', icon: BarChart3, label: 'Dashboard' },
-    { path: '/merchant/orders', icon: ShoppingBag, label: 'Orders' },
-    { path: '/merchant/menu', icon: List, label: 'Menu' },
-    { path: '/merchant/settings', icon: Settings, label: 'Settings' },
+    { path: '/merchant/dashboard', icon: BarChart3, label: 'لوحة التحكم' },
+    { path: '/merchant/orders', icon: ShoppingBag, label: 'الطلبات' },
+    { path: '/merchant/menu', icon: List, label: 'القائمة' },
+    { path: '/merchant/settings', icon: Settings, label: 'الإعدادات' },
   ];
 
   const adminLinks = [
-    { path: '/admin/dashboard', icon: BarChart3, label: 'Overview' },
-    { path: '/admin/cities', icon: MapPin, label: 'Cities' },
-    { path: '/admin/merchants', icon: Store, label: 'Merchants' },
-    { path: '/admin/drivers', icon: Users, label: 'Drivers' },
-    { path: '/admin/settings', icon: Settings, label: 'Settings' },
+    { path: '/admin/dashboard', icon: BarChart3, label: 'نظرة عامة' },
+    { path: '/admin/cities', icon: MapPin, label: 'المدن' },
+    { path: '/admin/merchants', icon: Store, label: 'التاجر' },
+    { path: '/admin/drivers', icon: Users, label: 'سائق' },
+    { path: '/admin/settings', icon: Settings, label: 'الإعدادات' },
   ];
 
   const links = role === 'merchant' ? merchantLinks : adminLinks;
@@ -40,7 +40,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ role }) => {
             <div>
               <h1 className="font-bold text-xl leading-none">Globo</h1>
               <p className="text-[10px] text-gray-500 font-medium uppercase tracking-wider mt-1">
-                {role === 'merchant' ? 'Merchant' : 'Admin'}
+                {role === 'merchant' ? 'تاجر' : 'مشرف'}
               </p>
             </div>
           </div>
@@ -73,7 +73,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ role }) => {
             className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-50 w-full transition-colors"
           >
             <LogOut size={20} className="text-gray-400" />
-            Exit to Demo
+            الخروج إلى العرض التجريبي
           </button>
         </div>
       </aside>
@@ -86,9 +86,9 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ role }) => {
             <div className="w-8 h-8 rounded-lg bg-gradient-primary flex items-center justify-center">
               <span className="text-white font-bold text-lg">G</span>
             </div>
-            <h1 className="font-bold text-lg">Globo {role === 'admin' ? 'Admin' : ''}</h1>
+            <h1 className="font-bold text-lg">Globo {role === 'admin' ? 'مشرف' : ''}</h1>
           </div>
-          <button onClick={() => navigate('/')} className="text-sm text-gray-500 font-medium">Exit</button>
+          <button onClick={() => navigate('/')} className="text-sm text-gray-500 font-medium">خروج</button>
         </div>
 
         {/* Mobile Nav Tabs */}

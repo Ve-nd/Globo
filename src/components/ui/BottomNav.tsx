@@ -7,10 +7,10 @@ export const CustomerBottomNav = () => {
   const location = useLocation();
   
   const navItems = [
-    { path: '/customer/home', icon: Home, label: 'Home' },
-    { path: '/customer/search', icon: Search, label: 'Search' },
-    { path: '/customer/orders', icon: Receipt, label: 'Orders' },
-    { path: '/customer/profile', icon: User, label: 'Profile' },
+    { path: '/customer/home', icon: Home, label: 'الرئيسية' },
+    { path: '/customer/search', icon: Search, label: 'بحث' },
+    { path: '/customer/orders', icon: Receipt, label: 'الطلبات' },
+    { path: '/customer/profile', icon: User, label: 'الملف الشخصي' },
   ];
 
   return (
@@ -53,10 +53,10 @@ export const DriverBottomNav = () => {
   const location = useLocation();
   
   const navItems = [
-    { path: '/driver/home', icon: Compass, label: 'Available' },
-    { path: '/driver/earnings', icon: Receipt, label: 'Earnings' },
-    { path: '/driver/history', icon: Clock, label: 'History' },
-    { path: '/driver/profile', icon: User, label: 'Profile' },
+    { path: '/driver/home', icon: Compass, label: 'متاح' },
+    { path: '/driver/earnings', icon: Receipt, label: 'الأرباح' },
+    { path: '/driver/history', icon: Clock, label: 'السجل' },
+    { path: '/driver/profile', icon: User, label: 'الملف الشخصي' },
   ];
 
   return (

@@ -17,10 +17,10 @@ const AdminMerchants = () => {
     <div className="max-w-7xl mx-auto space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Merchants</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage partner stores, restaurants, and shops.</p>
+          <h1 className="text-2xl font-bold text-gray-900">التجار</h1>
+          <p className="text-gray-500 text-sm mt-1">إدارة المتاجر الشريكة والمطاعم والمحلات.</p>
         </div>
-        <Button>+ Add New Merchant</Button>
+        <Button>+ إضافة تاجر جديد</Button>
       </div>
 
       <Card className="overflow-hidden">
@@ -31,15 +31,15 @@ const AdminMerchants = () => {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search merchants..."
+              placeholder="بحث عن التجار..."
               className="w-full bg-transparent p-2 text-sm focus:outline-none"
             />
           </div>
           <select className="bg-gray-50 rounded-xl px-4 text-sm font-medium focus:outline-none border-none">
-            <option>All Categories</option>
-            <option>Restaurants</option>
-            <option>Grocery</option>
-            <option>Pharmacy</option>
+            <option>جميع التصنيفات</option>
+            <option>مطاعم</option>
+            <option>بقالة</option>
+            <option>صيدلية</option>
           </select>
         </div>
 
@@ -47,12 +47,12 @@ const AdminMerchants = () => {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-gray-50/50">
-                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Store</th>
-                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Category</th>
-                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Today's Orders</th>
-                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Revenue (7d)</th>
-                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-right">Actions</th>
+                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">المتجر</th>
+                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">التصنيف</th>
+                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">الحالة</th>
+                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">طلبات اليوم</th>
+                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">الإيرادات (7 أيام)</th>
+                <th className="p-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-right">الإجراءات</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
@@ -66,7 +66,7 @@ const AdminMerchants = () => {
                       <div>
                         <p className="font-bold text-gray-900">{store.name}</p>
                         <div className="flex items-center gap-1 text-xs text-gray-500">
-                          ⭐ {store.rating} ({Math.floor(Math.random() * 500) + 50} reviews)
+                          ⭐ {store.rating} ({Math.floor(Math.random() * 500) + 50} تقييم)
                         </div>
                       </div>
                     </div>
@@ -76,14 +76,14 @@ const AdminMerchants = () => {
                   </td>
                   <td className="p-4">
                     <Badge variant={store.isOpen ? 'green' : 'gray'}>
-                      {store.isOpen ? 'Active' : 'Closed'}
+                      {store.isOpen ? 'نشط' : 'مغلق'}
                     </Badge>
                   </td>
                   <td className="p-4 text-sm font-bold text-gray-900">
                     {Math.floor(Math.random() * 80) + 10}
                   </td>
                   <td className="p-4 text-sm font-bold text-primary">
-                    {Math.floor(Math.random() * 20000) + 5000} MAD
+                    {Math.floor(Math.random() * 20000) + 5000} درهم
                   </td>
                   <td className="p-4 text-right">
                     <div className="flex items-center justify-end gap-2">
