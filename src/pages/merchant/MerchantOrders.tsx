@@ -17,16 +17,16 @@ const MerchantOrders = () => {
   };
 
   return (
-    <div className=\"max-w-6xl mx-auto h-[calc(100vh-120px)] flex flex-col\">
-      <div className=\"flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6\">
+    <div className="max-w-6xl mx-auto h-[calc(100vh-120px)] flex flex-col">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
-          <h1 className=\"text-2xl font-bold text-gray-900\">الطلبات الواردة</h1>
-          <p className=\"text-gray-500 text-sm mt-1\">إدارة وتتبع الطلبات المباشرة.</p>
+          <h1 className="text-2xl font-bold text-gray-900">الطلبات الواردة</h1>
+          <p className="text-gray-500 text-sm mt-1">إدارة وتتبع الطلبات الحية.</p>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className=\"flex gap-2 p-1 bg-gray-100 rounded-xl w-full md:w-auto mb-6\">
+      <div className="flex gap-2 p-1 bg-gray-100 rounded-xl w-full md:w-auto mb-6">
         {[
           { id: 'new', label: 'جديد', count: orders.filter(o => o.status === 'new').length, color: 'bg-red-500' },
           { id: 'preparing', label: 'قيد التحضير', count: orders.filter(o => o.status === 'preparing').length, color: 'bg-yellow-500' },
@@ -52,17 +52,17 @@ const MerchantOrders = () => {
       </div>
 
       {/* Order Grid */}
-      <div className=\"flex-1 overflow-y-auto no-scrollbar\">
+      <div className="flex-1 overflow-y-auto no-scrollbar">
         {filteredOrders.length === 0 ? (
-          <div className=\"h-full flex flex-col items-center justify-center text-gray-400\">
-            <div className=\"w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-4\">
+          <div className="h-full flex flex-col items-center justify-center text-gray-400">
+            <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-4">
               <Check size={32} />
             </div>
-            <h3 className=\"text-lg font-bold text-gray-900\">لا توجد طلبات {activeTab}</h3>
-            <p className=\"text-sm\">أنت على اطلاع بكافة الطلبات.</p>
+            <h3 className="text-lg font-bold text-gray-900">لا توجد طلبات {activeTab === 'new' ? 'جديدة' : activeTab === 'preparing' ? 'قيد التحضير' : 'جاهزة'}</h3>
+            <p className="text-sm">لقد قمت بإتمام كافة المهام هنا.</p>
           </div>
         ) : (
-          <div className=\"grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4\">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             <AnimatePresence>
               {filteredOrders.map((order) => (
                 <motion.div
@@ -72,13 +72,13 @@ const MerchantOrders = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                 >
-                  <Card className=\"p-5 flex flex-col h-full border border-gray-100\">
-                    <div className=\"flex justify-between items-start mb-4\">
+                  <Card className="p-5 flex flex-col h-full border border-gray-100">
+                    <div className="flex justify-between items-start mb-4">
                       <div>
-                        <h3 className=\"font-extrabold text-lg text-gray-900\">{order.id}</h3>
-                        <p className=\"text-gray-500 text-sm\">{order.customerName}</p>
+                        <h3 className="font-extrabold text-lg text-gray-900">{order.id}</h3>
+                        <p className="text-gray-500 text-sm">{order.customerName}</p>
                       </div>
-                      <div className=\"text-right\">
+                      <div className="text-right">
                         <Badge variant={
                           order.status === 'new' ? 'red' : 
                           order.status === 'preparing' ? 'yellow' : 'green'
@@ -88,12 +88,12 @@ const MerchantOrders = () => {
                       </div>
                     </div>
 
-                    <div className=\"bg-gray-50 rounded-xl p-4 mb-4 flex-1\">
-                      <ul className=\"space-y-3\">
+                    <div className="bg-gray-50 rounded-xl p-4 mb-4 flex-1">
+                      <ul className="space-y-3">
                         {order.items.map((item, i) => (
-                          <li key={i} className=\"flex justify-between text-sm\">
-                            <span className=\"font-bold text-gray-900\">
-                              <span className=\"text-primary mr-2\">{item.qty}x</span>
+                          <li key={i} className="flex justify-between text-sm">
+                            <span className="font-bold text-gray-900">
+                              <span className="text-primary mr-2">{item.qty}x</span>
                               {item.name}
                             </span>
                           </li>
@@ -101,16 +101,16 @@ const MerchantOrders = () => {
                       </ul>
                     </div>
 
-                    <div className=\"flex justify-between items-center mb-4\">
-                      <span className=\"text-gray-500 text-sm\">الإجمالي</span>
-                      <span className=\"font-extrabold text-lg text-primary\">{order.total} MAD</span>
+                    <div className="flex justify-between items-center mb-4">
+                      <span className="text-gray-500 text-sm">الإجمالي</span>
+                      <span className="font-extrabold text-lg text-primary">{order.total} MAD</span>
                     </div>
 
-                    <div className=\"mt-auto\">
+                    <div className="mt-auto">
                       {order.status === 'new' && (
-                        <div className=\"flex gap-2\">
-                          <Button variant=\"secondary\" className=\"flex-1\">إلغاء</Button>
-                          <Button onClick={() => updateOrderStatus(order.id, 'preparing')} className=\"flex-1 bg-green-500 hover:bg-green-600 border-none shadow-none\">
+                        <div className="flex gap-2">
+                          <Button variant="secondary" className="flex-1">رفض</Button>
+                          <Button onClick={() => updateOrderStatus(order.id, 'preparing')} className="flex-1 bg-green-500 hover:bg-green-600 border-none shadow-none">
                             قبول
                           </Button>
                         </div>
@@ -121,8 +121,8 @@ const MerchantOrders = () => {
                         </Button>
                       )}
                       {order.status === 'ready' && (
-                        <div className=\"text-center py-3 bg-green-50 text-green-700 font-bold rounded-xl text-sm border border-green-100\">
-                          في انتظار السائق...
+                        <div className="text-center py-3 bg-green-50 text-green-700 font-bold rounded-xl text-sm border border-green-100">
+                          بانتظار السائق...
                         </div>
                       )}
                     </div>
