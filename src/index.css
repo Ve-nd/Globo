@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-light to-primary;
+  }
+  .bg-gradient-primary {
+    @apply bg-gradient-to-r from-primary-light to-primary text-white;
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+:root {
+  --app-height: 100vh;
+}
+
+body {
+  background-color: #F8F9FA;
+  -webkit-tap-highlight-color: transparent;
+}
